@@ -28,6 +28,9 @@
 
     --ff-base: 'Roboto', sans-serif;
     --ff-screen: 'Handjet', sans-serif;
+
+    --fs-base: 1.5rem;
+    --fs-screen: 3rem;
 }
 
 *,
@@ -59,19 +62,22 @@ main {
     box-shadow: calc(var(--_border-thickness) / 2) calc(var(--_border-thickness) / 2) var(--clr-pink-700);
 
     .screen {
-        --_font-size: 3rem;
+        --_border-thickness: 3px;
 
         display: flex;
         align-items: flex-end;
         justify-content: end;
 
         background: var(--clr-screen);
-        border: 3px solid var(--clr-neutral-800);
+        border-top: var(--_border-thickness) solid var(--clr-neutral-900);
+        border-left: var(--_border-thickness) solid var(--clr-neutral-900);
+        border-right: var(--_border-thickness) solid var(--clr-neutral-700);
+        border-bottom: var(--_border-thickness) solid var(--clr-neutral-700);
         border-radius: 0.25rem;
         color: var(--clr-text-screen);
         font-family: var(--ff-screen);
-        font-size: var(--_font-size);
-        height: calc(var(--_font-size) * 2);
+        font-size: var(--fs-screen);
+        height: calc(var(--fs-screen) * 2);
         padding: 0.5rem 1rem;
     }
 
@@ -86,7 +92,7 @@ main {
             border-radius: 0.125rem;
             box-shadow: calc(var(--_border-thickness) / 7) calc(var(--_border-thickness) / 7) var(--clr-neutral-900);
             color: var(--clr-neutral-100);
-            font-size: 1.5rem;
+            font-size: var(--fs-base);
             padding: 1rem 1rem;
             cursor: pointer;
         }
