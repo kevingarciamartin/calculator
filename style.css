@@ -66,6 +66,7 @@ main {
         justify-content: end;
 
         background: var(--clr-screen);
+        border: 3px solid var(--clr-neutral-800);
         border-radius: 0.25rem;
         color: var(--clr-text-screen);
         font-family: var(--ff-screen);
