@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
+
+:root {
+    --clr-neutral-100: #e3e3e3;
+    --clr-neutral-400: #c1c1c1;
+    --clr-neutral-500: #818181;
+    --clr-neutral-700: #3c3c3c;
+    --clr-neutral-800: #272727;
+    --clr-neutral-900: #101010;
+
+    --clr-green-100: rgb(189, 231, 189);
+    --clr-green-400: teal;
+    --clr-green-500: rgb(1, 84, 84);
+    --clr-pink-400: salmon;
+    --clr-orange-400: coral;
+    --clr-orange-500: rgb(162, 80, 50);
+
+    --clr-text: var(--clr-neutral-100);
+    --clr-text-screen: var(--clr-neutral-900);
+    --clr-background: var(--clr-pink-400);
+    --clr-calc-background: linear-gradient(to bottom right, var(--clr-neutral-700), var(--clr-neutral-800));
+    --clr-screen: linear-gradient(to bottom right, var(--clr-green-100), var(--clr-neutral-400));
+    --clr-btn: linear-gradient(to bottom right, var(--clr-neutral-500), var(--clr-neutral-700));
+    --clr-alt-btn: linear-gradient(to bottom right, var(--clr-neutral-800), var(--clr-neutral-900));
+    --clr-operator-btn: linear-gradient(to bottom right, var(--clr-green-400), var(--clr-green-500));
+    --clr-accent-btn: linear-gradient(to bottom right, var(--clr-orange-400), var(--clr-orange-500));
+
+    --ff-base: 'Roboto', sans-serif;
+    --ff-screen: 'Handjet', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--clr-background);
+    height: 100dvh;
+    margin: 0;
+}
+
+main {
+    --_border-thickness: 1rem;
+
+    display: grid;
+    gap: var(--_border-thickness);
+
+    max-width: 500px;
+    background: var(--clr-calc-background);
+    border-radius: 1rem;
+    padding: var(--_border-thickness);
+
+    .screen {
+        --_font-size: 3rem;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: end;
+
+        background: var(--clr-screen);
+        border-radius: 0.25rem;
+        color: var(--clr-text-screen);
+        font-family: var(--ff-screen);
+        font-size: var(--_font-size);
+        height: calc(var(--_font-size) * 2);
+        padding: 0.5rem 1rem;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: calc(var(--_border-thickness) / 4);
+
+        .btn {
+            background: var(--clr-btn);
+            border: none;
+            border-radius: 0.125rem;
+            color: var(--clr-neutral-100);
+            font-size: 1.5rem;
+            padding: 1rem 1rem;
+            cursor: pointer;
+        }
+
+        .alt-btn {
+            background: var(--clr-alt-btn);
+        }
+
+        .operator-btn {
+            background: var(--clr-operator-btn);
+        }
+
+        .accent-btn {
+            background: var(--clr-accent-btn);
+        }
+
+        #equals {
+            grid-column: span 2;
+        }
+    }
+}
