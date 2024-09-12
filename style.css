@@ -12,6 +12,7 @@
     --clr-green-400: teal;
     --clr-green-500: rgb(1, 84, 84);
     --clr-pink-400: salmon;
+    --clr-pink-700: rgb(157, 79, 70);
     --clr-orange-400: coral;
     --clr-orange-500: rgb(162, 80, 50);
 
@@ -46,7 +47,7 @@ body {
 }
 
 main {
-    --_border-thickness: 1rem;
+    --_border-thickness: 1.5rem;
 
     display: grid;
     gap: var(--_border-thickness);
@@ -55,6 +56,7 @@ main {
     background: var(--clr-calc-background);
     border-radius: 1rem;
     padding: var(--_border-thickness);
+    box-shadow: calc(var(--_border-thickness) / 2) calc(var(--_border-thickness) / 2) var(--clr-pink-700);
 
     .screen {
         --_font-size: 3rem;
@@ -75,12 +77,13 @@ main {
     .buttons {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: calc(var(--_border-thickness) / 4);
+        gap: calc(var(--_border-thickness) / 3);
 
         .btn {
             background: var(--clr-btn);
             border: none;
             border-radius: 0.125rem;
+            box-shadow: calc(var(--_border-thickness) / 7) calc(var(--_border-thickness) / 7) var(--clr-neutral-900);
             color: var(--clr-neutral-100);
             font-size: 1.5rem;
             padding: 1rem 1rem;
