@@ -108,7 +108,7 @@ main {
     padding: 0.25rem 1rem;
     overflow: hidden;
 
-    .operation {
+    .secondary-display {
       font-size: calc(var(--fs-screen) / 2);
     }
   }

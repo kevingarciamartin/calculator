@@ -1,72 +1,197 @@
-let num1 = null;
-let num2 = null;
-let operator = null;
+let mainDisplayValue = "0";
+let secondaryDisplayValue = "";
+let firstOperand = null;
+let secondOperand = null;
+let firstOperator = null;
+let secondOperator = null;
+let result = null;
 
-const numberButtons = document.querySelectorAll(".num-btn");
-const operatorButtons = document.querySelectorAll(".operator-btn");
-const equalButton = document.querySelector("#equals");
+const buttons = document.querySelectorAll(".btn");
 
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    populateDisplay(button.value);
-  });
-});
+updateScreen();
+clickButton();
 
-operatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    operator = button.value;
-  });
-});
-
-equalButton.addEventListener("click", () => {
-  if (num1 !== null && num2 !== null && operator !== null)
-    console.log(operate(operator, Number(num1), Number(num2)));
-});
-
-function populateDisplay(value) {
-  const display = document.querySelector(".currentDisplay");
-
-  let displayValue;
-
-  if (operator === null) {
-    num1 = num1 === null ? value : (num1 += value);
-    displayValue = num1;
-  } else {
-    num2 = num2 === null ? value : (num2 += value);
-    displayValue = num2;
-  }
-
-  display.textContent = `${displayValue}`;
+function updateScreen() {
+  updateMainDisplay();
+  updateSecondaryDisplay();
 }
 
-function operate(operator, num1, num2) {
+function updateMainDisplay() {
+  const maxDisplayLength = 14;
+  const mainDisplay = document.querySelector(".main-display");
+  mainDisplay.textContent = mainDisplayValue;
+  if (mainDisplayValue.length > maxDisplayLength) {
+    mainDisplay.textContent = mainDisplayValue.substring(0, maxDisplayLength);
+  }
+}
+
+function updateSecondaryDisplay() {
+  const secondaryDisplay = document.querySelector(".secondary-display");
+  secondaryDisplay.textContent = secondaryDisplayValue;
+}
+
+function clickButton() {
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.classList.contains("operand-btn")) {
+        inputOperand(button.value);
+        updateScreen();
+      } else if (button.classList.contains("operator-btn")) {
+        inputOperator(button.value);
+        updateScreen();
+      } else if (button.id === "equals") {
+        inputEquals();
+        updateScreen();
+      } else if (button.id === "clear") {
+        clearScreen();
+        updateScreen();
+      }
+    });
+  });
+}
+
+function inputOperand(operand) {
+  if (firstOperator === null) {
+    if (mainDisplayValue === "0" || mainDisplayValue === 0) {
+      //1st click - handles first operand input
+      mainDisplayValue = operand;
+    } else if (mainDisplayValue === firstOperand) {
+      //starts new operation after inputEquals()
+      mainDisplayValue = operand;
+    } else {
+      mainDisplayValue += operand;
+    }
+  } else {
+    //3rd/5th click - inputs to secondOperand
+    if (mainDisplayValue === firstOperand) {
+      mainDisplayValue = operand;
+    } else {
+      mainDisplayValue += operand;
+    }
+  }
+}
+
+function inputOperator(operator) {
+  if (firstOperator != null && secondOperator === null) {
+    //4th click - handles input of second operator
+    secondOperator = operator;
+    secondOperand = mainDisplayValue;
+    result = operate(
+      Number(firstOperand),
+      Number(secondOperand),
+      firstOperator
+    );
+    mainDisplayValue = roundAccurately(result, 15).toString();
+    firstOperand = mainDisplayValue;
+    result = null;
+  } else if (firstOperator != null && secondOperator != null) {
+    //6th click - new secondOperator
+    secondOperand = mainDisplayValue;
+    result = operate(
+      Number(firstOperand),
+      Number(secondOperand),
+      secondOperator
+    );
+    secondOperator = operator;
+    mainDisplayValue = roundAccurately(result, 15).toString();
+    firstOperand = mainDisplayValue;
+    result = null;
+  } else {
+    //2nd click - handles first operator input
+    firstOperator = operator;
+    firstOperand = mainDisplayValue;
+    secondaryDisplayValue = `${firstOperand} ${firstOperator}`;
+  }
+}
+
+function inputEquals() {
+  //hitting equals doesn't display undefined before operate()
+  if (firstOperator === null) {
+    mainDisplayValue = mainDisplayValue;
+  } else if (secondOperator != null) {
+    //handles final result
+    secondOperand = mainDisplayValue;
+    result = operate(
+      Number(firstOperand),
+      Number(secondOperand),
+      secondOperator
+    );
+    if (result === "lmao") {
+      mainDisplayValue = "lmao";
+    } else {
+      mainDisplayValue = roundAccurately(result, 15).toString();
+      firstOperand = mainDisplayValue;
+      secondOperand = null;
+      firstOperator = null;
+      secondOperator = null;
+      result = null;
+    }
+  } else {
+    //handles first operation
+    secondOperand = mainDisplayValue;
+    result = operate(
+      Number(firstOperand),
+      Number(secondOperand),
+      firstOperator
+    );
+    if (result === "lmao") {
+      mainDisplayValue = "lmao";
+    } else {
+      mainDisplayValue = roundAccurately(result, 15).toString();
+      firstOperand = mainDisplayValue;
+      secondOperand = null;
+      firstOperator = null;
+      secondOperator = null;
+      result = null;
+    }
+  }
+}
+
+function clearScreen() {
+  mainDisplayValue = "0";
+  secondaryDisplayValue = "";
+  firstOperand = null;
+  secondOperand = null;
+  firstOperator = null;
+  secondOperator = null;
+  result = null;
+}
+
+function operate(firstOperand, secondOperand, operator) {
   switch (operator) {
     case "+":
-      return add(num1, num2);
+      return add(firstOperand, secondOperand);
     case "-":
-      return subtract(num1, num2);
+      return subtract(firstOperand, secondOperand);
     case "*":
-      return multiply(num1, num2);
+      return multiply(firstOperand, secondOperand);
     case "/":
-      return divide(num1, num2);
+      return divide(firstOperand, secondOperand);
     default:
       console.log("Error: Invalid operator.");
       break;
   }
 }
 
-function add(num1, num2) {
-  return num1 + num2;
+function add(firstOperand, secondOperand) {
+  return firstOperand + secondOperand;
 }
 
-function subtract(num1, num2) {
-  return num1 - num2;
+function subtract(firstOperand, secondOperand) {
+  return firstOperand - secondOperand;
 }
 
-function multiply(num1, num2) {
-  return num1 * num2;
+function multiply(firstOperand, secondOperand) {
+  return firstOperand * secondOperand;
 }
 
-function divide(num1, num2) {
-  return num1 / num2;
+function divide(firstOperand, secondOperand) {
+  if (secondOperand === 0) {
+    return "lmao";
+  }
+  return firstOperand / secondOperand;
+}
+
+function roundAccurately(num, places) {
+  return parseFloat(Math.round(num + "e" + places) + "e-" + places);
 }
