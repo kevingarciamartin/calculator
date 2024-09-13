@@ -4,6 +4,7 @@ let operator = null;
 
 const numberButtons = document.querySelectorAll(".num-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
+const equalButton = document.querySelector("#equals");
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -14,8 +15,11 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         operator = button.value;
-        console.log(button.value);
     });
+});
+
+equalButton.addEventListener("click", () => {
+    if (num1 !== null && num2 !== null && operator !== null) console.log(operate(operator, Number(num1), Number(num2)));
 });
 
 function populateDisplay(value) {
