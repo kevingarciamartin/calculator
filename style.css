@@ -55,7 +55,7 @@ main {
     display: grid;
     gap: var(--_border-thickness);
 
-    max-width: 500px;
+    max-width: 360px;
     background: var(--clr-calc-background);
     border-radius: 1rem;
     padding: var(--_border-thickness);
@@ -65,7 +65,8 @@ main {
         --_border-thickness: 3px;
 
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: end;
         justify-content: end;
 
         background: var(--clr-screen);
@@ -78,7 +79,12 @@ main {
         font-family: var(--ff-screen);
         font-size: var(--fs-screen);
         height: calc(var(--fs-screen) * 2);
-        padding: 0.5rem 1rem;
+        padding: 0.25rem 1rem;
+        overflow: hidden;
+
+        .operation {
+            font-size: calc(var(--fs-screen) / 2);
+        }
     }
 
     .buttons {
@@ -90,7 +96,7 @@ main {
             background: var(--clr-btn);
             border: none;
             border-radius: 0.125rem;
-            box-shadow: calc(var(--_border-thickness) / 7) calc(var(--_border-thickness) / 7) var(--clr-neutral-900);
+            box-shadow: calc(var(--_border-thickness) / 8) calc(var(--_border-thickness) / 8) var(--clr-neutral-900);
             color: var(--clr-neutral-100);
             font-size: var(--fs-base);
             padding: 1rem 1rem;
