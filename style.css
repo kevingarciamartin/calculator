@@ -4,6 +4,7 @@
   --clr-neutral-100: #e3e3e3;
   --clr-neutral-400: #c1c1c1;
   --clr-neutral-500: #818181;
+  --clr-neutral-600: #505050;
   --clr-neutral-700: #3c3c3c;
   --clr-neutral-800: #272727;
   --clr-neutral-900: #101010;
@@ -32,7 +33,7 @@
   --clr-btn: linear-gradient(
     to bottom right,
     var(--clr-neutral-500),
-    var(--clr-neutral-700)
+    var(--clr-neutral-600)
   );
   --clr-alt-btn: linear-gradient(
     to bottom right,
