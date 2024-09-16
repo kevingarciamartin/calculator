@@ -43,6 +43,8 @@ function clickButton() {
         inputEquals();
       } else if (button.id === "clear") {
         clearScreen();
+      } else if (button.id === "sign") {
+        inputSign();
       }
       updateScreen();
     });
@@ -167,6 +169,10 @@ function clearScreen() {
   firstOperator = null;
   secondOperator = null;
   result = null;
+}
+
+function inputSign() {
+  mainDisplayValue *= -1;
 }
 
 function operate(firstOperand, secondOperand, operator) {
