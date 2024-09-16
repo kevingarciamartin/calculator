@@ -43,6 +43,8 @@ function clickButton() {
         inputEquals();
       } else if (button.id === "clear") {
         clearScreen();
+      } else if (button.id === "delete") {
+        deleteCharacter();
       } else if (button.id === "sign") {
         inputSign();
       }
@@ -169,6 +171,13 @@ function clearScreen() {
   firstOperator = null;
   secondOperator = null;
   result = null;
+}
+
+function deleteCharacter() {
+  mainDisplayValue =
+    mainDisplayValue.length > 1
+      ? mainDisplayValue.substring(0, mainDisplayValue.length - 1)
+      : "0";
 }
 
 function inputSign() {
