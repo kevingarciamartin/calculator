@@ -10,6 +10,7 @@ const buttons = document.querySelectorAll(".btn");
 
 updateScreen();
 clickButton();
+clickKey();
 
 function updateScreen() {
   updateMainDisplay();
@@ -50,6 +51,31 @@ function clickButton() {
       }
       updateScreen();
     });
+  });
+}
+
+function clickKey() {
+  window.addEventListener("keydown", (e) => {
+    const key = e.key;
+    const operands = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const operators = ["+", "-", "*", "/"];
+
+    if (operands.includes(key)) {
+      inputOperand(key);
+    } else if (operators.includes(key)) {
+      inputOperator(key);
+    } else if (key === ".") {
+      inputDecimal(key);
+    } else if (key === "Enter") {
+      inputEquals();
+    } else if (key === "c" || key === "C" || key === "Escape") {
+      clearScreen();
+    } else if (key === "Backspace" || key === "Delete") {
+      deleteCharacter();
+    } else if (key === "Control") {
+      inputSign();
+    }
+    updateScreen();
   });
 }
 
