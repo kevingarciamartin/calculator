@@ -81,6 +81,7 @@ function inputOperator(operator) {
       firstOperator
     );
     mainDisplayValue = roundAccurately(result, 15).toString();
+    secondaryDisplayValue = `${result} ${secondOperator}`;
     firstOperand = mainDisplayValue;
     result = null;
   } else if (firstOperator != null && secondOperator != null) {
@@ -93,6 +94,7 @@ function inputOperator(operator) {
     );
     secondOperator = operator;
     mainDisplayValue = roundAccurately(result, 15).toString();
+    secondaryDisplayValue = `${result} ${secondOperator}`;
     firstOperand = mainDisplayValue;
     result = null;
   } else {
@@ -124,7 +126,7 @@ function inputEquals() {
       Number(secondOperand),
       secondOperator
     );
-    secondaryDisplayValue += secondOperand;
+    secondaryDisplayValue += ` ${secondOperand}`;
     if (result === "lmao") {
       mainDisplayValue = "lmao";
     } else {
