@@ -35,17 +35,14 @@ function clickButton() {
     button.addEventListener("click", () => {
       if (button.classList.contains("operand-btn")) {
         inputOperand(button.value);
-        updateScreen();
       } else if (button.classList.contains("operator-btn")) {
         inputOperator(button.value);
-        updateScreen();
       } else if (button.id === "equals") {
         inputEquals();
-        updateScreen();
       } else if (button.id === "clear") {
         clearScreen();
-        updateScreen();
       }
+      updateScreen();
     });
   });
 }
@@ -116,6 +113,7 @@ function inputEquals() {
       Number(secondOperand),
       secondOperator
     );
+    secondaryDisplayValue += secondOperand;
     if (result === "lmao") {
       mainDisplayValue = "lmao";
     } else {
@@ -134,6 +132,7 @@ function inputEquals() {
       Number(secondOperand),
       firstOperator
     );
+    secondaryDisplayValue += ` ${secondOperand}`;
     if (result === "lmao") {
       mainDisplayValue = "lmao";
     } else {
