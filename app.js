@@ -37,6 +37,8 @@ function clickButton() {
         inputOperand(button.value);
       } else if (button.classList.contains("operator-btn")) {
         inputOperator(button.value);
+      } else if (button.id === "decimal") {
+        inputDecimal(button.value);
       } else if (button.id === "equals") {
         inputEquals();
       } else if (button.id === "clear") {
