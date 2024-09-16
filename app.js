@@ -17,7 +17,7 @@ function updateScreen() {
 }
 
 function updateMainDisplay() {
-  const maxDisplayLength = 14;
+  const maxDisplayLength = 13;
   const mainDisplay = document.querySelector(".main-display");
   mainDisplay.textContent = mainDisplayValue;
   if (mainDisplayValue.length > maxDisplayLength) {
