@@ -101,6 +101,15 @@ function inputOperator(operator) {
   }
 }
 
+function inputDecimal(decimal) {
+  if (mainDisplayValue === firstOperand || mainDisplayValue === secondOperand) {
+    mainDisplayValue = "0";
+    mainDisplayValue += decimal;
+  } else if (!mainDisplayValue.includes(decimal)) {
+    mainDisplayValue += decimal;
+  }
+}
+
 function inputEquals() {
   //hitting equals doesn't display undefined before operate()
   if (firstOperator === null) {
