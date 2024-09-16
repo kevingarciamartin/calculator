@@ -6,6 +6,7 @@ let firstOperator = null;
 let secondOperator = null;
 let result = null;
 
+const maxDisplayLength = 14;
 const buttons = document.querySelectorAll(".btn");
 
 updateScreen();
@@ -18,7 +19,6 @@ function updateScreen() {
 }
 
 function updateMainDisplay() {
-  const maxDisplayLength = 13;
   const mainDisplay = document.querySelector(".main-display");
   mainDisplay.textContent = mainDisplayValue;
   if (mainDisplayValue.length > maxDisplayLength) {
@@ -110,7 +110,7 @@ function inputOperator(operator) {
       Number(secondOperand),
       firstOperator
     );
-    mainDisplayValue = roundAccurately(result, 15).toString();
+    mainDisplayValue = result.toString();
     secondaryDisplayValue = `${result} ${secondOperator}`;
     firstOperand = mainDisplayValue;
     result = null;
@@ -123,7 +123,7 @@ function inputOperator(operator) {
       secondOperator
     );
     secondOperator = operator;
-    mainDisplayValue = roundAccurately(result, 15).toString();
+    mainDisplayValue = result.toString();
     secondaryDisplayValue = `${result} ${secondOperator}`;
     firstOperand = mainDisplayValue;
     result = null;
@@ -160,7 +160,7 @@ function inputEquals() {
     if (result === "lmao") {
       mainDisplayValue = "lmao";
     } else {
-      mainDisplayValue = roundAccurately(result, 15).toString();
+      mainDisplayValue = result.toString();
       firstOperand = mainDisplayValue;
       secondOperand = null;
       firstOperator = null;
@@ -179,7 +179,7 @@ function inputEquals() {
     if (result === "lmao") {
       mainDisplayValue = "lmao";
     } else {
-      mainDisplayValue = roundAccurately(result, 15).toString();
+      mainDisplayValue = result.toString();
       firstOperand = mainDisplayValue;
       secondOperand = null;
       firstOperator = null;
@@ -201,23 +201,23 @@ function clearScreen() {
 
 function deleteCharacter() {
   mainDisplayValue =
-    mainDisplayValue.length > 1
+  mainDisplayValue.length > 1
       ? mainDisplayValue.substring(0, mainDisplayValue.length - 1)
       : "0";
-}
-
-function inputSign() {
-  mainDisplayValue *= -1;
-}
-
-function operate(firstOperand, secondOperand, operator) {
-  switch (operator) {
-    case "+":
-      return add(firstOperand, secondOperand);
-    case "-":
-      return subtract(firstOperand, secondOperand);
-    case "*":
-      return multiply(firstOperand, secondOperand);
+    }
+    
+    function inputSign() {
+      mainDisplayValue *= -1;
+    }
+    
+    function operate(firstOperand, secondOperand, operator) {
+      switch (operator) {
+        case "+":
+          return add(firstOperand, secondOperand);
+          case "-":
+            return subtract(firstOperand, secondOperand);
+            case "*":
+              return multiply(firstOperand, secondOperand);
     case "/":
       return divide(firstOperand, secondOperand);
     default:
@@ -243,8 +243,4 @@ function divide(firstOperand, secondOperand) {
     return "lmao";
   }
   return firstOperand / secondOperand;
-}
-
-function roundAccurately(num, places) {
-  return parseFloat(Math.round(num + "e" + places) + "e-" + places);
 }
