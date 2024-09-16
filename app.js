@@ -201,23 +201,23 @@ function clearScreen() {
 
 function deleteCharacter() {
   mainDisplayValue =
-  mainDisplayValue.length > 1
+    mainDisplayValue.length > 1
       ? mainDisplayValue.substring(0, mainDisplayValue.length - 1)
       : "0";
-    }
-    
-    function inputSign() {
-      mainDisplayValue *= -1;
-    }
-    
-    function operate(firstOperand, secondOperand, operator) {
-      switch (operator) {
-        case "+":
-          return add(firstOperand, secondOperand);
-          case "-":
-            return subtract(firstOperand, secondOperand);
-            case "*":
-              return multiply(firstOperand, secondOperand);
+}
+
+function inputSign() {
+  mainDisplayValue *= -1;
+}
+
+function operate(firstOperand, secondOperand, operator) {
+  switch (operator) {
+    case "+":
+      return add(firstOperand, secondOperand);
+    case "-":
+      return subtract(firstOperand, secondOperand);
+    case "*":
+      return multiply(firstOperand, secondOperand);
     case "/":
       return divide(firstOperand, secondOperand);
     default:
